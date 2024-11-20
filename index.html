@@ -5,16 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog App</title>
     <link rel="stylesheet" href="styles/index.css">
-    <script src="js/main.js" defer></script>
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
 </head>
 <body>
     <header>
         <h1>Vibrant Blog</h1>
         <nav>
             <ul>
-                <li><a href="signin.html">Sign In</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><button onclick="redirectTo('signin.html')">Sign In</button></li>
+                <li><button onclick="redirectTo('register.html')">Register</button></li>
+                <li><button onclick="redirectTo('dashboard.html')">Dashboard</button></li>
             </ul>
         </nav>
     </header>
