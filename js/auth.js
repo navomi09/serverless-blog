@@ -1,24 +1,14 @@
 import { Auth } from 'aws-amplify';
 
-// Sign up a new user
+// Register a new user
 export async function registerUser(email, password) {
     try {
         await Auth.signUp({
             username: email,
             password,
-            attributes: { email },
+            attributes: { email }, // You can add more attributes if needed (like name)
         });
         return { success: true, message: 'Registration successful! Please verify your email.' };
-    } catch (error) {
-        return { success: false, message: error.message };
-    }
-}
-
-// Confirm user email (if required)
-export async function confirmUser(email, code) {
-    try {
-        await Auth.confirmSignUp(email, code);
-        return { success: true, message: 'Email confirmed successfully!' };
     } catch (error) {
         return { success: false, message: error.message };
     }
@@ -44,22 +34,13 @@ export async function signOutUser() {
     }
 }
 
-// Forgot password: Send reset code
-export async function forgotPassword(email) {
+// Check current session (to maintain session after sign-in)
+export async function checkCurrentSession() {
     try {
-        await Auth.forgotPassword(email);
-        return { success: true, message: 'Password reset code sent. Check your email.' };
+        const session = await Auth.currentSession();
+        return { success: true, session };
     } catch (error) {
-        return { success: false, message: error.message };
+        return { success: false, message: 'No session found.' };
     }
 }
 
-// Forgot password: Reset password
-export async function resetPassword(email, code, newPassword) {
-    try {
-        await Auth.forgotPasswordSubmit(email, code, newPassword);
-        return { success: true, message: 'Password reset successful!' };
-    } catch (error) {
-        return { success: false, message: error.message };
-    }
-}
