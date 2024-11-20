@@ -1,32 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="styles/dashboard.css">
-    <script src="js/blog.js" defer></script>
+    <title>Blog App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        form {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="email"], input[type="password"], input[type="text"] {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>User Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="signin.html" id="logout">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="manage-posts">
-            <h2>Your Blog Posts</h2>
-            <div id="user-posts"></div>
-            <button id="new-post">New Post</button>
-        </section>
-        <section id="manage-comments">
-            <h2>Comments on Your Posts</h2>
-            <div id="user-comments"></div>
-        </section>
-    </main>
+    <div class="container">
+        <div id="signin-form" style="display:block;">
+            <h1>Sign In</h1>
+            <form onsubmit="event.preventDefault();">
+                <label for="email">Email:</label>
+                <input type="email" id="signin-email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="signin-password" required>
+                <button id="signin-btn">Sign In</button>
+                <p>Don't have an account? <a onclick="showSignupForm()">Sign Up</a></p>
+                <button type="button" onclick="showBlogPage()">Blog</button>
+            </form>
+        </div>
+        
+        <div id="signup-form" style="display:none;">
+            <h1>Sign Up</h1>
+            <form onsubmit="event.preventDefault();">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="signup-email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="signup-password" required>
+                <button id="signup-btn">Sign Up</button>
+                <p>Already have an account? <a onclick="showSigninForm()">Sign In</a></p>
+                <button type="button" onclick="showBlogPage()">Blog</button>
+            </form>
+        </div>
+        
+        <div id="blog-page" style="display:none;">
+            <h1>Blog</h1>
+            <p>Welcome to the blog page!</p>
+            <button id="create-post-btn">Create Post</button>
+            <div id="blog-posts">
+                <!-- Blog posts will be displayed here -->
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let isLoggedIn = false;
+
+        document.getElementById('signin-btn').addEventListener('click', () => {
+            // Authenticate user and redirect to blog page
+            // Replace with actual authentication logic
+            isLoggedIn = true;
+            showBlogPage();
+        });
+        
+        document.getElementById('signup-btn').addEventListener('click', () => {
+            // Register user and redirect to sign in page
+            // Replace with actual registration logic
+            alert('Signed up successfully!');
+            showSigninForm();
+        });
+        
+        document.getElementById('create-post-btn').addEventListener('click', () => {
+            // Open create post form or redirect to create post page
+            // Replace with actual logic
+            if (isLoggedIn) {
+                alert('Create post feature coming soon!');
+            } else {
+                alert('Please sign in to create a post!');
+            }
+        });
+        
+        function showSignupForm() {
+            document.getElementById('signin-form').style.display = 'none';
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('blog-page').style.display = 'none';
+        }
+        
+        function showSigninForm() {
+            document.getElementById('signup-form').style.display = 'none';
+            document.getElementById('signin-form').style.display = 'block';
+            document.getElementById('blog-page').style.display = 'none';
+        }
+        
+        function showBlogPage() {
+            if (isLoggedIn) {
+                document.getElementById('signin-form').style.display = 'none';
+                document.getElementById('signup-form').style.display = 'none';
+                document.getElementById('blog-page').style.display = 'block';
+            } else {
+                alert('Please sign in to access the blog!');
+            }
+        }
+    </script>
 </body>
 </html>
