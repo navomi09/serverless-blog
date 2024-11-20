@@ -1,25 +1,10 @@
-import Amplify from 'aws-amplify';
-
-Amplify.configure({
+const awsConfig = {
     Auth: {
-        region: 'us-east-1', // Replace with your AWS region
-        userPoolId: 'us-east-1_XXXXXXX', // Your Cognito User Pool ID
-        userPoolWebClientId: 'XXXXXXXXXXXXXXXXXXXXXXXXX', // Your Cognito App Client ID
-        mandatorySignIn: true,
+        region: 'ap-south-1', // Replace with your Cognito region
+        userPoolId: 'ap-south-1_hQeMeiUzC', // Replace with your User Pool ID
+        userPoolWebClientId: '6fj5on19m757atmpf8ksid3kdc', // Replace with your App Client ID
+        mandatorySignIn: true, // If you want to enforce sign-in before using the app
     },
-    API: {
-        endpoints: [
-            {
-                name: "BlogAPI",
-                endpoint: "https://api-id.execute-api.us-east-1.amazonaws.com/prod", // Replace with your API Gateway endpoint
-                region: "us-east-1", // Replace with your region
-            },
-        ],
-    },
-    Storage: {
-        AWSS3: {
-            bucket: "your-bucket-name", // Replace with your S3 bucket name
-            region: "us-east-1", // Replace with your region
-        },
-    },
-});
+};
+
+export default awsConfig;
