@@ -1,8 +1,7 @@
 // For testing purposes, call these functions when needed in your HTML:
 
-const email = "test@example.com"; // Replace with input field values
-const password = "password123"; // Replace with input field values
-
+const email = "test@example.com";
+const password = "password123"; 
 // Sign up test
 registerUser(email, password);
 
