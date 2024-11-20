@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <script src="js/blog.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="signin.html" id="logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="manage-posts">
+            <h2>Your Blog Posts</h2>
+            <div id="user-posts"></div>
+            <button id="new-post">New Post</button>
+        </section>
+        <section id="manage-comments">
+            <h2>Comments on Your Posts</h2>
+            <div id="user-comments"></div>
+        </section>
+    </main>
+</body>
+</html>
