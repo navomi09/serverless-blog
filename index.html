@@ -25,12 +25,16 @@
             margin-bottom: 10px;
         }
         
-        input[type="email"], input[type="password"], input[type="text"] {
+        input[type="email"], input[type="password"], input[type="text"], textarea {
             width: 100%;
             height: 40px;
             margin-bottom: 20px;
             padding: 10px;
             border: 1px solid #ccc;
+        }
+
+        textarea {
+            height: 100px; /* Adjust height for the textarea */
         }
         
         button {
@@ -81,6 +85,11 @@
             <h1>Blog</h1>
             <p>Welcome to the blog page!</p>
             <button id="create-post-btn">Create Post</button>
+            <div id="create-post-form" style="display:none;">
+                <h2>Create a New Post</h2>
+                <textarea id="post-content" placeholder="Write your post here..." required></textarea>
+                <button id="submit-post-btn">Submit Post</button>
+            </div>
             <div id="blog-posts">
                 <!-- Blog posts will be displayed here -->
             </div>
@@ -105,12 +114,23 @@
         });
         
         document.getElementById('create-post-btn').addEventListener('click', () => {
-            // Open create post form or redirect to create post page
-            // Replace with actual logic
+            // Show the create post form
             if (isLoggedIn) {
-                alert('Create post feature coming soon!');
+                document.getElementById('create-post-form').style.display = 'block';
             } else {
                 alert('Please sign in to create a post!');
+            }
+        });
+
+        document.getElementById('submit-post-btn').addEventListener('click', () => {
+            const postContent = document.getElementById('post-content').value;
+            if (postContent) {
+                // Here you would typically send the postContent to your server
+                alert('Post submitted: ' + postContent);
+                document.getElementById('post-content').value = ''; // Clear the textarea
+                document.getElementById('create-post-form').style.display = 'none'; // Hide the form
+            } else {
+                alert('Please write something before submitting!');
             }
         });
         
