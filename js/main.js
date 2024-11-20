@@ -1,6 +1,6 @@
 // Configuration for AWS Amplify
 import Amplify, { Auth, API } from 'aws-amplify';
-import awsconfig from './aws-exports'; // Replace with your actual AWS config file
+import awsconfig from './aws-config'; // Replace with your actual AWS config file
 Amplify.configure(awsconfig);
 
 const apiName = 'blogAPI'; // Replace with your API Gateway name
